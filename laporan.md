@@ -32,6 +32,43 @@ Untuk mencapai tujuan tersebut, solusi yang perlu dilakukan adalah sebagai berik
 - Mengembangkan sistem rekomendasi game dengan pendekatan Collaborative Filtering (CF)
 
 ## Data Understanding
+
+Dataset yang digunakan adalah [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam/data) oleh Anton Kozyriev. Dataset ini mengandung tiga kategori data, yakni data game, data user, dan data review atau recommendation user terhadap game. Pada dataset, terdapat 50.872 data game berbeda, 14.306.064 data user, dan 41.154.794 data review.
+
+### Deskripsi Variable
+
+Variable pada data game adalah sebagai berikut:
+ - app_id: Id unik setiap game
+ - title: Judul dari game
+ - description: Deskripsi pada game
+ - date_release: Tanggal rilis dari game
+ - tags: Daftar tag yang diberikan pada game. Tag dapat mewakili genre game seperti tag "Horror", "RPG", dan "Puzzle", maupun sifat game secara umum seperti "Well-Written" , "Wholesome", dan "Indie". Satu game dapat memiliki lebih dari satu tag
+ - win: Data boolean, apakah game tersedia untuk Windows
+ - mac: Data boolean, apakah game tersedia untuk MacOS
+ - linux: Data boolean, apakah game tersedia untuk Linux
+ - steam_deck: Data boolean, apakah game tersedia untuk Steam Deck
+ - rating: Rating sentiment dari game, mulai dari "_overwhelmingly positive_" hingga "_overwhelmingly negative_"
+ - positive_ratio: Persentase feedback pada game yang bersifat positif 
+ - user_reviews: Jumlah review pada game
+ - price_original: Harga game sebelum diskon, dalam satuan USD
+ - discount: Persentase diskon yang diberikan pada game
+ - price_final: Harga game setelah diskon, dalam satuan USD
+
+Variable pada data user adalah sebagai berikut:
+- user_id: Id unik setiap user
+- products: Jumlah game/add-ons yang dibeli user
+- reviews: Jumlah review yang dibuat oleh user
+
+Variable pada data review adalah sebagai berikut:
+- review_id: Id unik setiap review
+- app_id: Id dari game yang diberi review
+- user_id: Id dari user yang memberi review
+- is_recommended: Data boolean, apakah user merekomendasikan game ini ke user lain
+- helpful: Berapa user yang merasa review ini berguna (helpful)
+- funny: Berapa user yang merasa review ini menghibur atau lucu (funny)
+- date: Tanggal dibuatnya review
+- hours: Berapa jam user telah memainkan game tersebut
+
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
 Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
