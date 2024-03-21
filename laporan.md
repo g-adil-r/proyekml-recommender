@@ -23,7 +23,7 @@ Untuk menjawab pertanyaan tersebut, sistem rekomendasi dibuat dengan tujuan atau
 - Menghasilkan sejumlah rekomendasi game yang sesuai dengan preferensi pengguna dan belum pernah dimainkan sebelumnya.
 
 Keberhasilan proyek ML untuk rekomendasi game akan memberikan manfaat signifikan bagi bisnis, di antaranya:
-- Keterjangkauan game baru ke pengguna, terutama dari penerbit yang berpotensi berkembang
+- Keterjangkauan game ke pengguna, terutama dari penerbit yang berpotensi berkembang
 - Memudahkan menemukan game yang tepat untuk dimainkan bagi pengguna
 
 ### Solution statements
@@ -33,7 +33,7 @@ Untuk mencapai tujuan tersebut, solusi yang perlu dilakukan adalah sebagai berik
 
 ## Data Understanding
 
-Dataset yang digunakan adalah [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam/data) oleh Anton Kozyriev. Dataset ini mengandung tiga kategori data, yakni data game, data user, dan data review atau recommendation user terhadap game. Pada dataset, terdapat 50.872 data game berbeda, 14.306.064 data user, dan 41.154.794 data review.
+Dataset yang digunakan adalah [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam/data) oleh Anton Kozyriev, yang diambil dari _Steam Official Store_. Dataset ini mengandung tiga kategori data, yakni data game, data user, dan data review atau recommendation user terhadap game. Terdapat 50.872 data game, 14.306.064 data user, dan 41.154.794 data review.
 
 ### Deskripsi Variable
 
@@ -42,7 +42,7 @@ Variable pada data game adalah sebagai berikut:
  - title: Judul dari game
  - description: Deskripsi pada game
  - date_release: Tanggal rilis dari game
- - tags: Daftar tag yang diberikan pada game. Tag dapat mewakili genre game seperti tag "Horror", "RPG", dan "Puzzle", maupun sifat game secara umum seperti "Well-Written" , "Wholesome", dan "Indie". Satu game dapat memiliki lebih dari satu tag
+ - tags: Daftar tag yang diberikan pada game. Tag dapat mewakili genre game seperti "Horror", "RPG", dan "Puzzle", maupun sifat game secara umum seperti "Well-Written", "Difficult", dan "Indie". Satu game dapat memiliki lebih dari satu tag
  - win: Data boolean, apakah game tersedia untuk Windows
  - mac: Data boolean, apakah game tersedia untuk MacOS
  - linux: Data boolean, apakah game tersedia untuk Linux
@@ -57,7 +57,7 @@ Variable pada data game adalah sebagai berikut:
 Variable pada data user adalah sebagai berikut:
 - user_id: Id unik setiap user
 - products: Jumlah game/add-ons yang dibeli user
-- reviews: Jumlah review yang dibuat oleh user
+- reviews: Jumlah review yang dibuat user
 
 Variable pada data review adalah sebagai berikut:
 - review_id: Id unik setiap review
@@ -68,6 +68,10 @@ Variable pada data review adalah sebagai berikut:
 - funny: Berapa user yang merasa review ini menghibur atau lucu (funny)
 - date: Tanggal dibuatnya review
 - hours: Berapa jam user telah memainkan game tersebut
+
+### Exploratory Data Analysis
+
+Berikut adalah hasil analisis dari data tersebut:
 
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
