@@ -42,7 +42,7 @@ Variable pada data game adalah sebagai berikut:
  - title: Judul dari game
  - description: Deskripsi pada game
  - date_release: Tanggal rilis dari game
- - tags: Daftar tag yang diberikan pada game. Tag dapat mewakili genre game seperti "Horror", "RPG", dan "Puzzle", maupun sifat game secara umum seperti "Well-Written", "Difficult", dan "Indie". Satu game dapat memiliki lebih dari satu tag
+ - tags: Daftar tag yang diberikan pada game. Tag dapat mewakili genre game seperti "Horror", "RPG", dan "Puzzle", maupun sifat game secara umum seperti "Well-Written", "Difficult", dan "Female Protagonist". Satu game dapat memiliki lebih dari satu tag
  - win: Data boolean, apakah game tersedia untuk Windows
  - mac: Data boolean, apakah game tersedia untuk MacOS
  - linux: Data boolean, apakah game tersedia untuk Linux
@@ -72,6 +72,36 @@ Variable pada data review adalah sebagai berikut:
 ### Exploratory Data Analysis
 
 Berikut adalah hasil analisis dari data tersebut:
+
+1. Analisis tag pada game
+
+    Terdapat 441 tag unik pada data game. Berikut adalah grafik dari 10 tag terbanyak:
+
+    ![](pic/03-01.png)
+
+    _Gambar 3.1: Sepuluh tag terbanyak pada game Steam_
+
+    Dari grafik pada gambar 3.1, didapat observasi sebagai berikut:
+
+    - Tag "Indie" adalah tag yang paling banyak ditemukan di antara game-game di Steam, dengan lebih dari 25.000 game yang memiliki tag ini. Hal ini menunjukkan bahwa banyak game pada Steam dibuat oleh developer independen, bukan perusahaan besar.
+    - Tag "Singleplayer" juga cukup banyak, dengan lebih dari 20.000 game memiliki tag ini. Hal ini menunjukkan bahwa banyak game pada Steam dibuat untuk dinikmati sendiri.
+    - Tag "Action" dan "Adventure" juga sangat populer, dengan sekitar 20.000 game memiliki tag ini. Hal ini mengindikasikan bahwa banyak game yang ada bersifat penuh aksi dan petualangan.
+    - Tag "Casual" juga banyak ditemui meskipun tidak sebanyak tag sebelumnya, dengan sekitar 18.000 game memiliki tag ini. Hal inimenunjukkan bahwa banyak game pada Steam sifatnya mudah dimainkan dan tidak memerlukan banyak waktu.
+    - Tag "Simulation" muncul dalam sekitar 13.000 game. Hal ini menunjukkan ketertarikan game yang mensimulasikan dunia nyata, seperti game simulasi penerbangan atau simulasi kehidupan.
+    - Tag "2D", "Strategy", "RPG", "Atmospheric" masing-masing muncul dalam sekitar 10.000 game. Meskipun memiliki frekuensi yang lebih rendah dibandingkan dengan tag lainnya dalam 10 besar ini, mereka tetap mewakili segmen penting dari pasar game. Ini menunjukkan keanekaragaman dalam preferensi genre, seperti game strategi, RPG, hingga game yang memiliki suasana yang menarik.
+
+    Berikut adalah gambar wordcloud dari tag pada game:
+
+    ![](pic/03-02.png)
+
+    _Gambar 3.2: Wordcloud dari tag_
+
+    Dari gambar 3.2, didapat observasi sebagai berikut:
+
+    - Tag "Adventure", "Action", "Singleplayer", dan "Indie" adalah tag yang paling sering muncul pada game, ditandai dengan ukuran font yang besar.
+    - Tag "Atmospheric", "Strategy", dan "Simulation" tidak sepopuler tag lainnya, tetapi masih cukup signifikan.
+    - Tag "Casual", "RPG", "Multiplayer", "Story Rich", dan "Puzzle" juga terlihat dalam word cloud, menunjukkan bahwa mereka juga merupakan tag yang cukup populer dalam banyak game.
+    - Secara keseluruhan, word cloud ini menunjukkan keanekaragaman besar dalam jenis game yang ada pada data.
 
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
