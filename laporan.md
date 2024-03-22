@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Machine Learning - Ghifari Adil Ruchiyat
 
 ## 1. Project Overview
 
@@ -10,7 +10,7 @@ Perkembangan ini menciptakan peluang baru bagi pengembang dan penerbit game, tet
 
 Tujuan proyek ini adalah untuk mengembangkan sistem rekomendasi game yang menggunakan dua pendekatan, yakni Content-Based Filtering (CBF) dan Collaborative Filtering (CF). CBF menganalisis konten game, seperti genre, tema, mekanisme gameplay, dan visual, untuk merekomendasikan game yang mirip dengan game yang disukai pengguna. CF menganalisis data rating dan interaksi pengguna dengan game untuk merekomendasikan game yang disukai pengguna lain dengan minat yang serupa.
 
-## Business Understanding
+## 2. Business Understanding
 
 ### Problem Statements
 Berdasarkan latar belakang di atas, perlu dikembangkan sebuah sistem rekomendasi game untuk menjawab permasalahan berikut:
@@ -31,7 +31,7 @@ Untuk mencapai tujuan tersebut, solusi yang perlu dilakukan adalah sebagai berik
 - Mengembangkan sistem rekomendasi game dengan pendekatan Content-Based Filtering (CBF)
 - Mengembangkan sistem rekomendasi game dengan pendekatan Collaborative Filtering (CF)
 
-## Data Understanding
+## 3. Data Understanding
 
 Dataset yang digunakan adalah [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam/data) oleh Anton Kozyriev, yang diambil dari _Steam Official Store_. Dataset ini mengandung tiga kategori data, yakni data game, data user, dan data review atau recommendation user terhadap game. Terdapat 50.872 data game, 14.306.064 data user, dan 41.154.794 data review.
 
@@ -73,7 +73,7 @@ Variable pada data review adalah sebagai berikut:
 
 Berikut adalah hasil analisis dari data tersebut:
 
-1. Analisis tag pada game
+1. Top 10 tag pada game
 
     Terdapat 441 tag unik pada data game. Berikut adalah grafik dari 10 tag terbanyak:
 
@@ -90,6 +90,8 @@ Berikut adalah hasil analisis dari data tersebut:
     - Tag "Simulation" muncul dalam sekitar 13.000 game. Hal ini menunjukkan ketertarikan game yang mensimulasikan dunia nyata, seperti game simulasi penerbangan atau simulasi kehidupan.
     - Tag "2D", "Strategy", "RPG", "Atmospheric" masing-masing muncul dalam sekitar 10.000 game. Meskipun memiliki frekuensi yang lebih rendah dibandingkan dengan tag lainnya dalam 10 besar ini, mereka tetap mewakili segmen penting dari pasar game. Ini menunjukkan keanekaragaman dalam preferensi genre, seperti game strategi, RPG, hingga game yang memiliki suasana yang menarik.
 
+2. Wordcloud tag
+
     Berikut adalah gambar wordcloud dari tag pada game:
 
     ![](pic/03-02.png)
@@ -103,6 +105,20 @@ Berikut adalah hasil analisis dari data tersebut:
     - Tag "Casual", "RPG", "Multiplayer", "Story Rich", dan "Puzzle" juga terlihat dalam word cloud, menunjukkan bahwa mereka juga merupakan tag yang cukup populer dalam banyak game.
     - Secara keseluruhan, word cloud ini menunjukkan keanekaragaman besar dalam jenis game yang ada pada data.
 
+3. Jumlah rating game
+
+    Berikut adalah grafik histogram yang menunjukkan banyaknya game yang mendapat rating tertentu:
+
+    ![](pic/03-03.png)
+
+    _Gambar 3.3: Grafik histogram rating game_
+
+    Dari gambar 3.3, didapat observasi berikut:
+
+    - Sebagian besar game memiliki rating "Mixed" hingga "Very Positive". Hal ini menunjukkan bahwa sebagian besar game di Steam mendapatkan review positif dari pemainnya.
+    - Game dengan rating "Overwhelmingly Negative" hingga "Mostly Negative" relatif sedikit. Hal ini menunjukkan bahwa sedikit game di Steam yang mendapatkan rating negatif dari user dalam jumlah besar
+    - Ada peningkatan jumlah game dengan rating "Mixed". Hal ini dapat menunjukkan bahwa beberapa game memiliki aspek yang disukai oleh beberapa pemain tetapi tidak oleh pemain lain.
+
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
 Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
@@ -115,7 +131,22 @@ Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
 
-## Data Preparation
+## 4. Data Preparation
+
+### Content-Based Filtering
+Untuk content-based filtering, data preparation yang dilakukan adalah sebagai berikut:
+
+1.  Mengambil app_id, title, dan tags dari data game
+2.  Drop game yang tidak memiliki tag
+3.  Feature engineering dengan TF-IDF
+
+Untuk Collaborative filtering, data preparation yang dulakukan adalah sebagai berikut:
+
+1.  Mengambil app_id, user_id, dan is_recommended dari data review
+2.  Drop review dengan is_recommended == false
+3.  Membuat user-item matrix
+
+
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
