@@ -217,21 +217,55 @@ Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk meny
 
 ## Evaluation
 
-Metrik evaluasi yang akan digunakan untuk mengukur kinerja model adalah Precision@k. Precision@k adalah metrik yang digunakan untuk mengukur kecocokan antara bagian data yang diambil dengan informasi yang dibutuhkan. Precision@k menunjukkan banyaknya hasil rekomendasi yang relevan, dari total rekomendasi yang dibuat. Rumus dari precision adalah
+Metrik evaluasi yang akan digunakan untuk mengukur kinerja model adalah sebagai berikut:
 
-$$\text{Precision@k} = \frac{Jumlah rekomendasi yang relevan}{Jumlah rekomendasi}$$
+1. Precision@k 
 
-Nilai presisi yang tinggi menunjukkan bahwa model jarang membuat prediksi positif yang salah, sehingga prediksi positifnya dapat lebih dipercaya.
+    Precision@k adalah metrik yang digunakan untuk mengukur kecocokan antara bagian data yang diambil dengan informasi yang dibutuhkan. Precision@k menunjukkan banyaknya hasil rekomendasi yang relevan, dari total rekomendasi yang dibuat. Rumus dari precision@k adalah
 
-Dalam Content-Based Fitering, rekomendasi yang relevan adalah item rekomendasi yang memiliki sifat yang serupa dengan item target. Dalam konteks proyek ini,
+    $$\text{Precision@k} = \frac{Jumlah rekomendasi yang relevan}{Jumlah rekomendasi}$$
 
-| title | tag yang muncul dalam target |
-|:--------|:------|
-|          Rampage Knights | **Co-op**, **Action Roguelike**, **Action**, **Roguelike**, **Indie**, **Multiplayer**, **Adventure**, **RPG**, **Local Co-Op**, **Roguelite**, **Dungeon Crawler**, **2D**, **Hack and Slash**, **Difficult**, **Procedural Generation**, **Local Multiplayer** |
-|         Labyrinth Legend | **Hack and Slash**, **Dungeon Crawler**, **Pixel Graphics**, **RPG**, **Procedural Generation**, **Local Multiplayer**, **Local Co-Op**, **Action**, **Indie**, **Co-op**,**Singleplayer**, **Multiplayer**, **2D**, **Adventure**, **Roguelike**, **Roguelite** |
-|        Children of Morta | **Multiplayer**, **Roguelike**, **Hack and Slash**, **Action Roguelike**, **Roguelite**, **Pixel Graphics**, **RPG**, **Action**, **Local Co-Op**, **Dungeon Crawler**, **Singleplayer**, **Co-op**, **2D**, **Procedural Generation** |
-|           Rogues Like Us | **Action Roguelike**, **Action**, **Indie**, **Roguelite**, **Hack and Slash**, **Difficult**, **Roguelike**, **Dungeon Crawler**, **Local Co-Op** |
-|            Astral Ascent | **Roguelite**, **Action Roguelike**, **Pixel Graphics**, **Hack and Slash**, **Action**, **Roguelike**, **2D**, **Magic**, **Co-op**, **Adventure**, **Local Co-Op**, **Singleplayer**, **Multiplayer**, **Local Multiplayer**, **Indie** |
+    Nilai presisi yang tinggi menunjukkan bahwa model jarang membuat prediksi positif yang salah, sehingga prediksi positifnya dapat lebih dipercaya.
+
+    Dalam Content-Based Fitering, rekomendasi yang relevan adalah item rekomendasi yang memiliki sifat yang serupa dengan item target. Dalam konteks proyek ini, rekomendasi game yang relevan adalah game yang memiliki tag yang mirip dengan game target. Kemiripan ini akan diukur dengan menggunakan Jaccard Score.
+
+    Jaccard score adalah score yang digunakan untuk mengukur kesamaan dari dua himpunan. Jaccard score mengukur rasio dari irisan dan gabungan kedua himpunan tersebut. Rumusnya adalah
+
+    $$\text{Jaccard Score} = \frac{|A \cap B|}{|A \cup B|}$$
+
+    dimana $A$ dan $B$ adalah dua himpunan yang akan dicari kesamaannya.
+    
+    Jaccard score memiliki rentang dari 0 hingga 1. Score mendekati 1 menandakan kedua himpunan tersebut sangat mirip, sedangkan score mendekati 0 menandakan kedua himpunan tersebut sangat berbeda.
+
+    Pada proyek ini, game yang direkomendasikan akan dikatakan relevan jika memiliki Jaccard skor sebesar 0.5 atau lebih dengan game target.
+
+2. Silhouette score
+
+    Silhouette score adalah metrik yang digunakan untuk mengevaluasi kualitas hasil dari algoritma clustering. Silhouette score mengukur seberapa dekat suatu titik data dengan anggota clusternya sendiri dibandingkan dengan cluster lainnya.
+
+    Silhouette score untuk datapoint $i$ paca cluster $C_i$ dihitung dengan rumus
+    
+    $$s_i = \frac{b_i - a_i}{max(b_i,a_i)}$$
+
+    Dimana:
+    
+    - $s_i$: Silhouette score untuk datapoint $i$
+    - $a_i$: Rata-rata jarak antara $i$ dengan data lain pada cluster yang sama
+    - $b_i$: Rata-rata dari jarak antara $i$ dengan data lain pada cluster terdekat yang berbeda
+
+    Nilai $a_i$ didapat dengan rumus berikut:
+
+    $$a_i = \frac{1}{C_i - 1} \sum_{j \in C_i, i \ne j} d(i,j)\$$
+
+    Sedangkan nilai $b_i$ didapat dengan rumus berikut:
+
+    $$b_i = \min_{k \ne i} \frac{1}{C_k} \sum_{j \in C_k} d(i,j)\$$
+
+    dimana $d(i,j)$ adalah jarak antara datapoint $i$ dan $j$. 
+
+    Nilai silhouette score untuk datapoint $i$ berkisar antara -1 sampai 1. Silhouette score mendekati 1 menandakan titik data tersebut berada sangat dekat dengan pusat clusternya sendiri dan jauh dari cluster lainnya. Hal ini menunjukkan pembagian data yang baik ke dalam cluster. Silhouette score mendekati 0 menandakan titik data tersebut berada di antara dua cluster. Silhouette score negatif menandakan bahwa titik data tersebut lebih dekat dengan pusat cluster lain dibandingkan dengan clusternya sendiri. Silhouette score biasanya dihitung sebagai rata-rata silhouette score untuk semua titik data dalam dataset. Nilai rata-rata yang lebih tinggi menunjukkan kualitas clustering yang lebih baik.
+
+
 
 Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
 
