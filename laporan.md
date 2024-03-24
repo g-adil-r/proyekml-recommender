@@ -117,7 +117,6 @@ Berikut adalah hasil analisis dari data tersebut:
 
     - Sebagian besar game memiliki rating "Mixed" hingga "Very Positive". Hal ini menunjukkan bahwa sebagian besar game di Steam mendapatkan review positif dari pemainnya.
     - Game dengan rating "Overwhelmingly Negative" hingga "Mostly Negative" relatif sedikit. Hal ini menunjukkan bahwa sedikit game di Steam yang mendapatkan rating negatif dari user dalam jumlah besar
-    - Ada peningkatan jumlah game dengan rating "Mixed". Hal ini dapat menunjukkan bahwa beberapa game memiliki aspek yang disukai oleh beberapa pemain tetapi tidak oleh pemain lain.
 
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
@@ -137,12 +136,21 @@ Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
 Untuk content-based filtering, data preparation yang dilakukan adalah sebagai berikut:
 
 1.  Mengambil app_id, title, dan tags dari data game
+
+    Pendekatan content-based filtering akan dilakukan dengan melihat tag dari game yang serupa, sehingga data yang diperlukan adalah data id game, nama game, serta daftar tag dari game tersebut.
+
 2.  Drop game yang tidak memiliki tag
-3.  Feature engineering dengan TF-IDF
+
+
+
+3.  Vektorisasi TF-IDF
 
 Untuk Collaborative filtering, data preparation yang dulakukan adalah sebagai berikut:
 
 1.  Mengambil app_id, user_id, dan is_recommended dari data review
+
+
+
 2.  Drop review dengan is_recommended == false
 3.  Membuat user-item matrix
 
@@ -153,7 +161,54 @@ Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dil
 - Menjelaskan proses data preparation yang dilakukan
 - Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
 
-## Modeling
+## 5. Modeling
+
+### Content-Based Filtering
+
+_Content-Based Filtering_ atau CBF adalah pendekatan yang digunakan dalam sistem rekomendasi berdasarkan konten item yang disarankan. Dalam konteks sistem rekomendasi game, pendekatan ini menganalisis fitur pada game, misalnya seperti rating atau genre dari game, untuk memberikan rekomendasi yang relevan pada user.
+
+Kelebihan dari _Content-Based Filtering_ adalah:
+
+- Dapat merekomendasikan item yang bahkan belum diberi rating oleh user lain
+- Dapat memberikan penjelasan yang jelas tentang alasan di balik rekomendasi yang diberikan
+- Dapat memberikan rekomendasi yang lebih personal karena mempertimbangkan preferensi individual user
+
+Sedangkan kekurangan dari _Content-Based Filtering_ adalah:
+
+- Tidak dapat memberikan rekomendasi yang baik jika deskripsi item tidak akurat atau lengkap 
+- Hasil rekomendasi seringkali kurang bervariasi
+
+Untuk melakukan pengujian model, digunakan game berikut:
+
+| app_id | title | tags |
+|:-------|:------|:-----|
+| 445980 | Wizard of Legend | Action Roguelike, Pixel Graphics, Roguelike, Action, Dungeon Crawler, Local Co-Op, Magic, Multiplayer, Adventure, Roguelite, Indie, Co-op, Hack and Slash, Local Multiplayer, Difficult, 2D, Singleplayer, RPG, Procedural Generation, Fast-Paced |
+
+Berikut adalah lima game hasil rekomendasi dari game pada tabel:
+
+|  app_id | title | tags |
+|:--------|:------|:----:|
+|  314410 |          Rampage Knights | Co-op, Action Roguelike, Action, "Beat em up", Roguelike, Indie, Multiplayer, Adventure, RPG, Local Co-Op, Online Co-Op, Roguelite, Dungeon Crawler, 2D, Funny, Hack and Slash, Difficult, Side Scroller, Procedural Generation, Local Multiplayer, |
+| 1321010 |         Labyrinth Legend | Hack and Slash, Action RPG, Dungeon Crawler, Pixel Graphics, RPG, Procedural Generation, Local Multiplayer, Local Co-Op, Action, Indie, Co-op, Fantasy, Old School, Singleplayer, Multiplayer, 2D, Controller, Adventure, Roguelike, Roguelite, |
+|  330020 |        Children of Morta | Multiplayer, Roguelike, Hack and Slash, Action Roguelike, Roguelite, Online Co-Op, Pixel Graphics, RPG, Action, Local Co-Op, Dungeon Crawler, Singleplayer, Story Rich, Co-op, Isometric, Action RPG, 2D, Procedural Generation, Fantasy, Action-Adventure, |
+|  492410 |           Rogues Like Us | Action Roguelike, Action, Indie, Roguelite, Hack and Slash, Difficult, Roguelike, Dungeon Crawler, Early Access, Local Co-Op, |
+| 1280930 |            Astral Ascent | Roguelite, Action Roguelike, Pixel Graphics, Hack and Slash, 2D Platformer, Platformer, Action, Roguelike, Solitaire, 2D, Fantasy, Magic, Co-op, Adventure, Local Co-Op, Singleplayer, Multiplayer, Local Multiplayer, Early Access, Indie, |
+
+### Collaborative Filtering
+
+_Collaborative Filtering_ atau CF adalah pendekatan yang digunakan dalam sistem rekomendasi, yang memanfaatkan data dari sesama pengguna untuk memberikan rekomendasi. Pendekatan ini bertujuan untuk mengidentifikasi tren kolaboratif di antara pengguna dan item yang disarankan, diambil dari interaksi atau preferensi mereka.
+
+Kelebihan dari _Collaborative Filtering_ adalah:
+
+- Dapat memberikan rekomendasi pada item yang kontennya sulit didapat
+- Dapat memberikan rekomendasi yang lebih bervariasi, berdasarkan kesamaan dengan user lain
+- Mampu menangkap pola dan asosiasi yang mungkin tidak terlihat pada Content-Based Filtering
+
+Sedangkan kekurangan dari _Collaborative Filtering_ adalah:
+
+- Sulit memberikan rekomendasi pada user baru, karena belum memiliki data tentang preferensi mereka (Cold-start problem)
+- Membutuhkan perhitungan yang kompleks, terutama pada dataset yang besar
+
 Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
@@ -161,6 +216,23 @@ Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk meny
 - Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
 
 ## Evaluation
+
+Metrik evaluasi yang akan digunakan untuk mengukur kinerja model adalah Precision@k. Precision@k adalah metrik yang digunakan untuk mengukur kecocokan antara bagian data yang diambil dengan informasi yang dibutuhkan. Precision@k menunjukkan banyaknya hasil rekomendasi yang relevan, dari total rekomendasi yang dibuat. Rumus dari precision adalah
+
+$$\text{Precision@k} = \frac{Jumlah rekomendasi yang relevan}{Jumlah rekomendasi}$$
+
+Nilai presisi yang tinggi menunjukkan bahwa model jarang membuat prediksi positif yang salah, sehingga prediksi positifnya dapat lebih dipercaya.
+
+Dalam Content-Based Fitering, rekomendasi yang relevan adalah item rekomendasi yang memiliki sifat yang serupa dengan item target. Dalam konteks proyek ini,
+
+| title | tag yang muncul dalam target |
+|:--------|:------|
+|          Rampage Knights | **Co-op**, **Action Roguelike**, **Action**, **Roguelike**, **Indie**, **Multiplayer**, **Adventure**, **RPG**, **Local Co-Op**, **Roguelite**, **Dungeon Crawler**, **2D**, **Hack and Slash**, **Difficult**, **Procedural Generation**, **Local Multiplayer** |
+|         Labyrinth Legend | **Hack and Slash**, **Dungeon Crawler**, **Pixel Graphics**, **RPG**, **Procedural Generation**, **Local Multiplayer**, **Local Co-Op**, **Action**, **Indie**, **Co-op**,**Singleplayer**, **Multiplayer**, **2D**, **Adventure**, **Roguelike**, **Roguelite** |
+|        Children of Morta | **Multiplayer**, **Roguelike**, **Hack and Slash**, **Action Roguelike**, **Roguelite**, **Pixel Graphics**, **RPG**, **Action**, **Local Co-Op**, **Dungeon Crawler**, **Singleplayer**, **Co-op**, **2D**, **Procedural Generation** |
+|           Rogues Like Us | **Action Roguelike**, **Action**, **Indie**, **Roguelite**, **Hack and Slash**, **Difficult**, **Roguelike**, **Dungeon Crawler**, **Local Co-Op** |
+|            Astral Ascent | **Roguelite**, **Action Roguelike**, **Pixel Graphics**, **Hack and Slash**, **Action**, **Roguelike**, **2D**, **Magic**, **Co-op**, **Adventure**, **Local Co-Op**, **Singleplayer**, **Multiplayer**, **Local Multiplayer**, **Indie** |
+
 Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
 
 Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
@@ -173,7 +245,3 @@ Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, probl
 [^1]:	J. Che, “Study on videogame industry and its general developing trend,” in Proceedings at the 5th annual conference on business, economics, and management, 2018.
 [^2]:	R. Baltezarević, B. Baltezarević, and V. Baltezarević, “The video gaming industry: From play to revenue,” Int. Rev., no. 3–4, pp. 71–76, 2018.
 [^3]:	A. Mulachela, “Analisis Perkembangan Industri Game di Indonesia Melalui Pendekatan Rantai Nilai Global (Global Value Chain),” Indones. J. Glob. Discourse, vol. 2, no. 2, pp. 32–51, Dec. 2020, doi: 10.29303/ijgd.v2i2.17.
-
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
