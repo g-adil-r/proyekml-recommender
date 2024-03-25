@@ -42,7 +42,7 @@ Variable pada data game adalah sebagai berikut:
  - title: Judul dari game
  - description: Deskripsi pada game
  - date_release: Tanggal rilis dari game
- - tags: Daftar tag yang diberikan pada game. Tag dapat mewakili genre game seperti "Horror", "RPG", dan "Puzzle", maupun sifat game secara umum seperti "Well-Written", "Difficult", dan "Female Protagonist". Satu game dapat memiliki lebih dari satu tag
+ - tags: Daftar tag yang diberikan pada game. Tag dapat mewakili genre game seperti "Horror", "RPG", dan "Puzzle", maupun sifat game secara umum seperti "Well-Written", "Difficult", dan "Female Protagonist". Satu game umumnya memiliki lebih dari satu tag
  - win: Data boolean, apakah game tersedia untuk Windows
  - mac: Data boolean, apakah game tersedia untuk MacOS
  - linux: Data boolean, apakah game tersedia untuk Linux
@@ -64,8 +64,8 @@ Variable pada data review adalah sebagai berikut:
 - app_id: Id dari game yang diberi review
 - user_id: Id dari user yang memberi review
 - is_recommended: Data boolean, apakah user merekomendasikan game ini ke user lain
-- helpful: Berapa user yang merasa review ini berguna (helpful)
-- funny: Berapa user yang merasa review ini menghibur atau lucu (funny)
+- helpful: Jumlah user yang merasa review ini berguna
+- funny: Jumlah user yang merasa review ini menghibur atau lucu
 - date: Tanggal dibuatnya review
 - hours: Berapa jam user telah memainkan game tersebut
 
@@ -133,6 +133,7 @@ Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
 ## 4. Data Preparation
 
 ### Content-Based Filtering
+
 Untuk content-based filtering, data preparation yang dilakukan adalah sebagai berikut:
 
 1.  Mengambil app_id, title, dan tags dari data game
@@ -141,18 +142,26 @@ Untuk content-based filtering, data preparation yang dilakukan adalah sebagai be
 
 2.  Drop game yang tidak memiliki tag
 
-
+    Content dari game akan ditentukan berdasarkan tag dari game. Content tidak bisa didapat jika game tidak memiliki tag, sehingga tidak akan digunakan.
 
 3.  Vektorisasi TF-IDF
+
+    TF-IDF digunakan untuk memberikan bobot pada tag game. Teknik ini akan digunakan pada sistem rekomendasi untuk menemukan representasi fitur penting dari setiap tag pada game. Dengan demikian, TF-IDF dapat menyoroti tag yang unik dan relevan untuk setiap game, yang dapat membantu dalam memberikan rekomendasi yang lebih akurat.
+
+### Collaborative Filtering
 
 Untuk Collaborative filtering, data preparation yang dulakukan adalah sebagai berikut:
 
 1.  Mengambil app_id, user_id, dan is_recommended dari data review
 
-
+    Pendekatan collaborative filtering akan dilakukan dengan melihat apakah user merekomendasikan game tersebut ke user lain dalam reviewnya, sehingga data yang diperlukan adalah data id game, id user, serta apakah user merekomendasikan game tersebut
 
 2.  Drop review dengan is_recommended == false
+
+
+
 3.  Membuat user-item matrix
+
 
 
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
@@ -208,6 +217,26 @@ Sedangkan kekurangan dari _Collaborative Filtering_ adalah:
 
 - Sulit memberikan rekomendasi pada user baru, karena belum memiliki data tentang preferensi mereka (Cold-start problem)
 - Membutuhkan perhitungan yang kompleks, terutama pada dataset yang besar
+
+Untuk melakukan pengujian model, akan digunakan user dengan id 51580. User tersebut merekomendasikan game berikut:
+
+|  app_id |                              title | date_release |                  rating | positive_ratio | user_reviews |
+|:-------:|:-----------------------------------|:-------------|:-----------------------:|:--------------:|:------------:|
+| 1817190 | Marvel’s Spider-Man: Miles Morales |   2022-11-18 |           Very Positive |             94 |        16625 |
+|  379720 |                               DOOM |   2016-05-12 | Overwhelmingly Positive |             95 |       121343 |
+|  590380 |                    Into the Breach |   2018-02-27 |           Very Positive |             94 |        14489 |
+|  975370 |                     Dwarf Fortress |   2022-12-06 | Overwhelmingly Positive |             95 |        19665 |
+| 1649080 |                   Two Point Campus |   2022-08-09 |           Very Positive |             88 |         2421 |
+
+Hasil rekomendasi dari user diatas adalah sebagai berikut:
+
+|  app_id |           title | date_release |                  rating | positive_ratio | user_reviews |
+|--------:|:----------------|:-------------|:-----------------------:|:--------------:|:------------:|
+|  546560 | Half-Life: Alyx |   2020-03-23 | Overwhelmingly Positive |             98 |        71472 |
+| 1237970 |    Titanfall® 2 |   2020-06-18 |           Very Positive |             94 |       154419 |
+|  611500 | Quake Champions |   2022-08-18 |         Mostly Positive |             73 |        36191 |
+|     440 | Team Fortress 2 |   2007-10-10 |           Very Positive |             93 |       985819 |
+|    2280 |     DOOM (1993) |   2007-08-03 | Overwhelmingly Positive |             96 |        13070 |
 
 Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
 
@@ -272,12 +301,12 @@ Berikut adalah hasil evaluasi untuk pendekatan _Content-Based Filtering_ dan _Co
 ### Content-Based Filtering
 
 | title | Jaccard Similarity |
-|:------|:----:|
-|          Rampage Knights |  |
-|         Labyrinth Legend |  |
-|        Children of Morta |  |
-|           Rogues Like Us |  |
-|            Astral Ascent |  |
+|:------|:-----|
+|          Rampage Knights | 0.6666666666666666 |
+|         Labyrinth Legend | 0.6666666666666666 |
+|        Children of Morta | 0.5384615384615384 |
+|           Rogues Like Us | 0.42857142857142855 |
+|            Astral Ascent | 0.6 |
 
 Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
 
