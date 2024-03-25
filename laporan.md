@@ -69,6 +69,51 @@ Variable pada data review adalah sebagai berikut:
 - date: Tanggal dibuatnya review
 - hours: Berapa jam user telah memainkan game tersebut
 
+Berikut adalah hasil `df.describe()` dari data game:
+
+|       | positive_ratio | user_reviews |  price_final | price_original |   discount   |
+|:-----:|:--------------:|:------------:|:------------:|:--------------:|:------------:|
+| count |  50872.000000  | 5.087200e+04 | 50872.000000 |  50872.000000  | 50872.000000 |
+|  mean |    77.052033   | 1.824425e+03 |   8.620325   |    8.726788    |   5.592212   |
+|  std  |    18.253592   | 4.007352e+04 |   11.514164  |    11.507021   |   18.606679  |
+|  min  |    0.000000    | 1.000000e+01 |   0.000000   |    0.000000    |   0.000000   |
+|  25%  |    67.000000   | 1.900000e+01 |   0.990000   |    0.990000    |   0.000000   |
+|  50%  |    81.000000   | 4.900000e+01 |   4.990000   |    4.990000    |   0.000000   |
+|  75%  |    91.000000   | 2.060000e+02 |   10.990000  |    11.990000   |   0.000000   |
+|  max  |   100.000000   | 7.494460e+06 |  299.990000  |   299.990000   |   90.000000  |
+
+_Tabel 3.1: Hasil `df.describe()` pada data game_
+
+Berikut adalah hasil `df.describe()` dari data user:
+
+|       |   products   |    reviews   |
+|:-----:|:------------:|:------------:|
+| count | 1.430606e+07 | 1.430606e+07 |
+|  mean | 1.163734e+02 | 2.876738e+00 |
+|  std  | 2.438515e+02 | 7.987421e+00 |
+|  min  | 0.000000e+00 | 0.000000e+00 |
+|  25%  | 2.300000e+01 | 1.000000e+00 |
+|  50%  | 5.500000e+01 | 1.000000e+00 |
+|  75%  | 1.270000e+02 | 3.000000e+00 |
+|  max  | 3.221400e+04 | 6.045000e+03 |
+
+_Tabel 3.2: Hasil `df.describe()` pada data user_
+
+Berikut adalah hasil `df.describe()` dari data review:
+
+|       |    helpful   |     funny    |     hours    |
+|:-----:|:------------:|:------------:|:------------:|
+| count | 4.115479e+07 | 4.115479e+07 | 4.115479e+07 |
+|  mean | 3.202567e+00 | 1.058071e+00 | 1.006022e+02 |
+|  std  | 4.693649e+01 | 2.867060e+01 | 1.761675e+02 |
+|  min  | 0.000000e+00 | 0.000000e+00 | 0.000000e+00 |
+|  25%  | 0.000000e+00 | 0.000000e+00 | 7.800000e+00 |
+|  50%  | 0.000000e+00 | 0.000000e+00 | 2.730000e+01 |
+|  75%  | 0.000000e+00 | 0.000000e+00 | 9.920000e+01 |
+|  max  | 3.621200e+04 | 2.810900e+04 | 1.000000e+03 |
+
+_Tabel 3.3: Hasil `df.describe()` pada data review_
+
 ### Exploratory Data Analysis
 
 Berikut adalah hasil analisis dari data tersebut:
