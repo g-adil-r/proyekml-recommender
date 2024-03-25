@@ -156,12 +156,27 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-03.png)
 
-    _Gambar 3.3: Grafik histogram rating game_
+    _Gambar 3.3: Grafik frekuensi rating game_
 
     Dari gambar 3.3, didapat observasi berikut:
 
-    - Sebagian besar game memiliki rating "Mixed" hingga "Very Positive". Hal ini menunjukkan bahwa sebagian besar game di Steam mendapatkan review positif dari pemainnya.
+    - Sebagian besar game memiliki rating "Mixed" hingga "Very Positive". Terdapat lebih dari 12000 game yang memiliki rating "Mixed", "Positive", atau "Very Positive". Hal ini menunjukkan bahwa sebagian besar game di Steam mendapatkan review positif dari pemainnya.
     - Game dengan rating "Overwhelmingly Negative" hingga "Mostly Negative" relatif sedikit. Hal ini menunjukkan bahwa sedikit game di Steam yang mendapatkan rating negatif dari user dalam jumlah besar
+
+4. Histogram data game
+
+    Berikut adalah data histogram positive ratio, harga asli, harga setelah diskon, dan persentase diskon pada data game
+
+    ![](pic/03-04.png)
+
+    _Gambar 3.4: Grafik histogram beberapa data game_
+
+    Dari grafik histogram pada gambar 3.4, didapat observasi berikut:
+
+    - Pada fitur ratio_positive, sebagian besar game memiliki rasio positif tinggi, yang menunjukkan bahwa sebagian besar game mendapatkan ulasan yang positif. Namun perlu diperhatikan bahwa data ini tidak mencerminkan rating game secara keseluruhan. Game dengan hanya 5 review, namun semua reviewnya positif, dapat menghasilkan rasio positif sebesar 100%, yang dapat menjelaskan tingginya rasio positif 100%. Beberapa puncak data juga terlihat, misalnya pada rasio positif sebesar 80% dan 90%.
+    - Pada fitur price_original, sebagian besar game memiliki harga asli di bawah $50. Walaupun begitu, terdapat beberapa outlier dengan game yang harganya mencapai hingga $300.
+    - Pada fitur discount, sejumlah besar game tidak menawarkan diskon atau diskon sangat minimal, yakni sekitar 0-20%. Namun, ada lonjakan yang jelas sekitar 50% dan 90%, menunjukkan event penjualan khusus atau promosi di mana terdapat diskon substansial ditawarkan.
+    - Pada fitur price_final, sebagian besar game juga memiliki harga yang rendah setelah diskon. Data histogram price_final juga mirip dengan data histogram price_original, yang menunjukkan sedikit diskon yang ada pada sebagian besar game.
 
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
