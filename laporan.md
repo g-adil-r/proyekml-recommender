@@ -67,7 +67,7 @@ Variable pada data review adalah sebagai berikut:
 - helpful: Jumlah user yang merasa review ini berguna
 - funny: Jumlah user yang merasa review ini menghibur atau lucu
 - date: Tanggal dibuatnya review
-- hours: Berapa jam user telah memainkan game tersebut
+- hours: Berapa jam user telah memainkan game tersebut saat memberikan review
 
 Berikut adalah hasil `df.describe()` dari data game:
 
@@ -189,11 +189,31 @@ Berikut adalah hasil analisis dari data tersebut:
     - Sebagian besar game memiliki jumlah review yang sangat rendah, namun terdapat outlier dengan game yang memiliki review sebanyak lebih dari 6 juta. Secara keseluruhan, histogram ini menunjukkan bahwa distribusi jumlah review game pada data sangat tidak merata.
     - Sebagian besar game memiliki jumlah review yang rendah, yakni di bawah 500 review. Hal ini menunjukkan bahwa sebagian besar game mungkin tidak terlalu populer, atau baru saja dirilis dan belum mendapatkan banyak review.
 
-5. Histogram fitur hours pada game
+5. Histogram data review
 
-    Berikut adalah grafik histogram dari fitur hours pada data 
+    Berikut adalah grafik histogram dari data review
 
-    ![](pic/03-05.png)
+    ![](pic/03-06.png)
+
+    *Gambar 3.6: Grafik histogram dari data review*
+
+    Dari grafik histogram pada gambar 3.6, didapat observasi berikut:
+
+    - Pada fitur hours, terlihat bahwa sebagian besar pengguna memberikan review setelah bermain selama kurang dari 200 jam. Hal ini dapat menunjukkan bahwa sebagian besar game memang memiliki waktu main yang cukup singkat, atau banyak pengguna memberikan review awal berdasarkan pengalaman bermain game mereka yang relatif singkat.
+    - Pada fitur helpful dan funny, terlihat bahwa hampir semua review berada di bawah 10. Hal ini menunjukkan bahwa mayoritas review tidak mendapatkan banyak vote helpful ataupun funny. Walaupun begitu, terdapat beberapa review dengan jumlah helpful dan funny yang tinggi. Review ini mungkin berisi informasi yang bermanfaat bagi user lain atau review yang lucu dan menghibur.
+
+6. Histogram data user
+
+    Berikut adalah grafik histogram dari data user
+
+    ![](pic/03-07.png)
+
+    *Gambar 3.7: Grafik histogram dari data user*
+
+    Dari grafik histogram pada gambar 3.7, didapat observasi berikut:
+
+    - Pada fitur products, terlihat bahwa sebagian besar pengguna memiliki di bawah 200 produk, dan terdapat outlier yang mencapai 30000 produk. Hal ini dapat menunjukkan bahwa sebagian besar pengguna cenderung memiliki jumlah game atau add-ons yang terbatas, yang dapat dipengaruhi oleh preferensi pribadi, keterbatasan waktu, atau faktor biaya
+    - Pada fitur reviews, terlihat bahwa sebagian besar pengguna memberikan di bawah 10 review, dan terdapat outlier yang mencapai 6000 produk. Hal ini dapat menunjukkan bahwa hanya sedikit pengguna yang aktif memberikan review, misalnya karena banyak pengguna yang memilih untuk bermain game daripada menulis review, atau karena mereka hanya memberikan review untuk game tertentu yang mereka sukai atau tidak sukai
 
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
