@@ -228,7 +228,7 @@ Berikut adalah hasil analisis dari data tersebut:
     Selain grafik di atas, didapat beberapa fakta lain saat melakukan EDA, yakni sebagai berikut:
     
     - Ada 1244 game yang tidak memiliki tag sama sekali. Game-game yang tidak memiliki tag banyak yang berasal dari game populer, seperti Fallout 4, Half-Life: Alyx, Portal 2, dan Team Fortress 2. Hal ini dapat menjadi tantangan karena sistem mungkin tidak memiliki informasi yang cukup untuk membuat rekomendasi.
-    - Ada 121 game yang memiliki nama yang sama persis tetapi sebenarnya adalah game yang berbeda. Misalnya, terdapat dua game berbeda dengan nama "RUSH" - game balapan action dan game puzzle casual. Hal ini juga bisa menjadi tantangan saat membangun sistem rekomendasi karena bisa membingungkan model. Oleh karenanya, penting untuk memastikan bahwa sistem rekomendasi dapat membedakan game-game ini, misalnya dengan memasukkan fitur tambahan seperti tanggal rilis atau tag ke dalam model, atau dengan menggunakan identifier lain ssat memberikan rekomendasi seperti id game.
+    - Ada 121 game yang memiliki nama yang sama persis tetapi sebenarnya adalah game yang berbeda. Misalnya, terdapat dua game berbeda dengan nama "Lighthouse Keeper" - yang satu adalah game horror eksperimental dengan grafik pixel, sedangkan game lainnya adalah game eksplorasi santai dengan grafik 3D. Hal ini juga bisa menjadi tantangan saat membangun sistem rekomendasi karena bisa membingungkan model. Oleh karenanya, penting untuk memastikan bahwa sistem rekomendasi dapat membedakan game-game ini, misalnya dengan memasukkan fitur tambahan seperti tanggal rilis atau tag ke dalam model, atau dengan menggunakan identifier lain ssat memberikan rekomendasi seperti id game.
 
 ## 4. Data Preparation
 
