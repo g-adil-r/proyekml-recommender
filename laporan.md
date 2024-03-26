@@ -215,17 +215,20 @@ Berikut adalah hasil analisis dari data tersebut:
     - Pada fitur products, terlihat bahwa sebagian besar pengguna memiliki di bawah 200 produk, dan terdapat outlier yang mencapai 30000 produk. Hal ini dapat menunjukkan bahwa sebagian besar pengguna cenderung memiliki jumlah game atau add-ons yang terbatas, yang dapat dipengaruhi oleh preferensi pribadi, keterbatasan waktu, atau faktor biaya
     - Pada fitur reviews, terlihat bahwa sebagian besar pengguna memberikan di bawah 10 review, dan terdapat outlier yang mencapai 6000 produk. Hal ini dapat menunjukkan bahwa hanya sedikit pengguna yang aktif memberikan review, misalnya karena banyak pengguna yang memilih untuk bermain game daripada menulis review, atau karena mereka hanya memberikan review untuk game tertentu yang mereka sukai atau tidak sukai
 
-Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+7. Grafik rekomendasi game pada review
 
-Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+    ![](pic/03-08.png)
 
-Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+    *Gambar 3.8: Grafik histogram dari data user*
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
+    Dari grafik diatas, terlihat bahwa review dengan label "True" (merekomendasikan game) berjumlah sekitar 35 juta, sedangkan review dengan label "False" (tidak merekomendasikan game) berjumlah sekitar 5 juta. Jumlah review dengan label "True" (merekomendasikan game) jauh lebih banyak dibandingkan dengan review dengan label "False" (tidak merekomendasikan game). Hal ini menunjukkan bahwa sebagian besar user cenderung menyukai dan merekomendasikan game yang mereka mainkan, walaupun terdapat beberapa review negatif.
+
+8. Lain-lain
+
+    Selain grafik di atas, didapat beberapa fakta lain saat melakukan EDA, yakni sebagai berikut:
+    
+    - Ada 1244 game yang tidak memiliki tag sama sekali. Game-game yang tidak memiliki tag banyak yang berasal dari game populer, seperti Fallout 4, Half-Life: Alyx, Portal 2, dan Team Fortress 2. Hal ini dapat menjadi tantangan karena sistem mungkin tidak memiliki informasi yang cukup untuk membuat rekomendasi.
+    - Ada 121 game yang memiliki nama yang sama persis tetapi sebenarnya adalah game yang berbeda. Misalnya, terdapat dua game berbeda dengan nama "RUSH" - game balapan action dan game puzzle casual. Hal ini juga bisa menjadi tantangan saat membangun sistem rekomendasi karena bisa membingungkan model. Oleh karenanya, penting untuk memastikan bahwa sistem rekomendasi dapat membedakan game-game ini, misalnya dengan memasukkan fitur tambahan seperti tanggal rilis atau tag ke dalam model, atau dengan menggunakan identifier lain ssat memberikan rekomendasi seperti id game.
 
 ## 4. Data Preparation
 
