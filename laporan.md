@@ -165,7 +165,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
 4. Histogram data game
 
-    Berikut adalah data histogram positive ratio, harga asli, harga setelah diskon, dan persentase diskon pada data game
+    Berikut adalah grafik histogram dari feature ratio_positive, price_original, discount, dan price_final pada data game
 
     ![](pic/03-04.png)
 
@@ -173,10 +173,27 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Dari grafik histogram pada gambar 3.4, didapat observasi berikut:
 
-    - Pada fitur ratio_positive, sebagian besar game memiliki rasio positif tinggi, yang menunjukkan bahwa sebagian besar game mendapatkan ulasan yang positif. Namun perlu diperhatikan bahwa data ini tidak mencerminkan rating game secara keseluruhan. Game dengan hanya 5 review, namun semua reviewnya positif, dapat menghasilkan rasio positif sebesar 100%, yang dapat menjelaskan tingginya rasio positif 100%. Beberapa puncak data juga terlihat, misalnya pada rasio positif sebesar 80% dan 90%.
+    - Pada fitur ratio_positive, sebagian besar game memiliki rasio positif tinggi, yang menunjukkan bahwa sebagian besar game mendapatkan review yang positif. Namun perlu diperhatikan bahwa data ini tidak mencerminkan rating game secara keseluruhan. Game dengan hanya 5 review, namun semua reviewnya positif, dapat menghasilkan rasio positif sebesar 100%, yang dapat menjelaskan tingginya rasio positif 100%. Beberapa puncak data juga terlihat, misalnya pada rasio positif sebesar 80% dan 90%.
     - Pada fitur price_original, sebagian besar game memiliki harga asli di bawah $50. Walaupun begitu, terdapat beberapa outlier dengan game yang harganya mencapai hingga $300.
-    - Pada fitur discount, sejumlah besar game tidak menawarkan diskon atau diskon sangat minimal, yakni sekitar 0-20%. Namun, ada lonjakan yang jelas sekitar 50% dan 90%, menunjukkan event penjualan khusus atau promosi di mana terdapat diskon substansial ditawarkan.
+    - Pada fitur discount, sejumlah besar game tidak menawarkan diskon atau diskon sangat minimal, yakni sekitar 0-20%. Namun, ada lonjakan yang jelas sekitar 50% dan 90%, menunjukkan event penjualan khusus atau promosi di mana terdapat diskon yang ditawarkan.
     - Pada fitur price_final, sebagian besar game juga memiliki harga yang rendah setelah diskon. Data histogram price_final juga mirip dengan data histogram price_original, yang menunjukkan sedikit diskon yang ada pada sebagian besar game.
+
+    Berikut adalah grafik histogram dari feature user_review pada data game.
+
+    ![](pic/03-05.png)
+
+    *Gambar 3.5: Grafik histogram user_review data game. Grafik di sebelah kiri adalah data keseluruhan. Grafik sebelah kanan adalah histogram dalam rentang 0 sampai 2000 review*
+
+   Dari grafik histogram pada gambar 3.5, didapat observasi berikut:
+
+    - Sebagian besar game memiliki jumlah review yang sangat rendah, namun terdapat outlier dengan game yang memiliki review sebanyak lebih dari 6 juta. Secara keseluruhan, histogram ini menunjukkan bahwa distribusi jumlah review game pada data sangat tidak merata.
+    - Sebagian besar game memiliki jumlah review yang rendah, yakni di bawah 500 review. Hal ini menunjukkan bahwa sebagian besar game mungkin tidak terlalu populer, atau baru saja dirilis dan belum mendapatkan banyak review.
+
+5. Histogram fitur hours pada game
+
+    Berikut adalah grafik histogram dari fitur hours pada data 
+
+    ![](pic/03-05.png)
 
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
