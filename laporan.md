@@ -295,7 +295,7 @@ Untuk melakukan pengujian model, digunakan game dengan id 445980 dengan data seb
 
 _Tabel 5.1: Game yang akan diuji untuk Content-Based Filtering_
 
-Berikut adalah lima game hasil rekomendasi dari game pada tabel:
+Berikut adalah lima game hasil rekomendasi dari game pada tabel 5.1:
 
 |  app_id | title | tags |
 |:--------|:------|:----:|
@@ -336,7 +336,7 @@ Untuk melakukan pengujian model, akan digunakan user dengan id 51580. User terse
 
 _Tabel 5.3: Game yang direkomendasikan oleh user yang akan diuji_
 
-Hasil rekomendasi dari user diatas adalah sebagai berikut:
+Hasil rekomendasi berdasarkan tabel 5.3 adalah sebagai berikut:
 
 | app_id | title | date_release | rating | positive_ratio | user_reviews |
 |-------:|:------|:-------------|:------:|:--------------:|:------------:|
