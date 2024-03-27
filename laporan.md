@@ -390,11 +390,11 @@ Metrik evaluasi yang akan digunakan untuk mengukur kinerja model adalah sebagai 
 
     Nilai $a_i$ didapat dengan rumus berikut:
 
-    $$a_i = \frac{1}{C_i - 1} \sum_{j \in C_i, i \ne j} d(i,j)\$$
+    $$a_i = \frac{1}{|C_i - 1|} \sum_{j \in C_i, i \ne j} d(i,j)\$$
 
     Sedangkan nilai $b_i$ didapat dengan rumus berikut:
 
-    $$b_i = \min_{k \ne i} \frac{1}{C_k} \sum_{j \in C_k} d(i,j)\$$
+    $$b_i = \min_{k \ne i} \frac{1}{|C_k|} \sum_{j \in C_k} d(i,j)\$$
 
     dimana $d(i,j)$ adalah jarak antara datapoint $i$ dan $j$. 
 
