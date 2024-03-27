@@ -175,7 +175,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     - Pada fitur ratio_positive, sebagian besar game memiliki rasio positif tinggi, yang menunjukkan bahwa sebagian besar game mendapatkan review yang positif. Namun perlu diperhatikan bahwa data ini tidak mencerminkan rating game secara keseluruhan. Game dengan hanya 5 review, namun semua reviewnya positif, dapat menghasilkan rasio positif sebesar 100%, yang dapat menjelaskan tingginya rasio positif 100%. Beberapa puncak data juga terlihat, misalnya pada rasio positif sebesar 80% dan 90%.
     - Pada fitur price_original, sebagian besar game memiliki harga asli di bawah $50. Walaupun begitu, terdapat beberapa outlier dengan game yang harganya mencapai hingga $300.
-    - Pada fitur discount, sejumlah besar game tidak menawarkan diskon atau diskon sangat minimal, yakni sekitar 0-20%. Namun, ada lonjakan yang jelas sekitar 50% dan 90%, menunjukkan event penjualan khusus atau promosi di mana terdapat diskon yang ditawarkan.
+    - Pada fitur discount, sejumlah besar game tidak menawarkan diskon atau diskon sangat minimal, yakni sekitar 0-20%. Namun, ada lonjakan yang jelas sekitar 50% dan 90%, yang menunjukkan event penjualan khusus atau promosi di mana terdapat diskon yang ditawarkan.
     - Pada fitur price_final, sebagian besar game juga memiliki harga yang rendah setelah diskon. Data histogram price_final juga mirip dengan data histogram price_original, yang menunjukkan sedikit diskon yang ada pada sebagian besar game.
 
     Berikut adalah grafik histogram dari feature user_review pada data game.
@@ -227,8 +227,9 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Selain grafik di atas, didapat beberapa fakta lain saat melakukan EDA, yakni sebagai berikut:
     
-    - Ada 1244 game yang tidak memiliki tag sama sekali. Game-game yang tidak memiliki tag banyak yang berasal dari game populer, seperti Fallout 4, Half-Life: Alyx, Portal 2, dan Team Fortress 2. Hal ini dapat menjadi tantangan karena sistem mungkin tidak memiliki informasi yang cukup untuk membuat rekomendasi.
-    - Ada 121 game yang memiliki nama yang sama persis tetapi sebenarnya adalah game yang berbeda. Misalnya, terdapat dua game berbeda dengan nama "Lighthouse Keeper" - yang satu adalah game horror eksperimental dengan grafik pixel, sedangkan game lainnya adalah game eksplorasi santai dengan grafik 3D. Hal ini juga bisa menjadi tantangan saat membangun sistem rekomendasi karena bisa membingungkan model. Oleh karenanya, penting untuk memastikan bahwa sistem rekomendasi dapat membedakan game-game ini, misalnya dengan memasukkan fitur tambahan seperti tanggal rilis atau tag ke dalam model, atau dengan menggunakan identifier lain ssat memberikan rekomendasi seperti id game.
+    - Dari 50872 game yang ada, terdapat 1244 game yang tidak memiliki tag sama sekali. Game-game yang tidak memiliki tag banyak yang berasal dari game populer, seperti Fallout 4, Half-Life: Alyx, Portal 2, dan Team Fortress 2. Hal ini dapat menjadi tantangan karena sistem mungkin tidak memiliki informasi yang cukup untuk membuat rekomendasi.
+
+    - Ada 121 game yang memiliki nama yang sama persis tetapi sebenarnya adalah game yang berbeda. Misalnya, terdapat dua game berbeda dengan nama "Lighthouse Keeper" - yang satu adalah game horror eksperimental dengan grafik pixel, sedangkan game lainnya adalah game survival santai dengan grafik 3D. Hal ini juga bisa menjadi tantangan saat membangun sistem rekomendasi karena bisa membingungkan model. Oleh karenanya, penting untuk memastikan bahwa sistem rekomendasi dapat membedakan game-game ini, misalnya dengan memasukkan fitur tambahan seperti tanggal rilis atau tag ke dalam model, atau dengan menggunakan identifier lain ssat memberikan rekomendasi seperti id game.
 
 ## 4. Data Preparation
 
@@ -254,21 +255,15 @@ Untuk Collaborative filtering, data preparation yang dulakukan adalah sebagai be
 
 1.  Mengambil app_id, user_id, dan is_recommended dari data review
 
-    Pendekatan collaborative filtering akan dilakukan dengan melihat apakah user merekomendasikan game tersebut ke user lain dalam reviewnya, sehingga data yang diperlukan adalah data id game, id user, serta apakah user merekomendasikan game tersebut
+    Pendekatan collaborative filtering akan dilakukan dengan melihat apakah user merekomendasikan game tersebut ke user lain dalam reviewnya, sehingga akan diambil fitur yang diperlukan, yakni id_game, id_user, dan is_recommended
 
-2.  Drop review dengan is_recommended == false
+2.  Mengambil review dengan is_recommended == True
 
-
+    Dari data review, hanya akan diambil data dengan nilai is_recommended bernilai True. Review negatif tidak akan digunakan untuk menyederhanakan data.
 
 3.  Membuat user-item matrix
 
-
-
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+    Matriks ini adalah representasi dari interaksi antara user dan game, dimaan tiap baris mewakili user dan tiap kolom mewakili game. Nilai dalam matriks adalah indikasi dari preferensi pengguna terhadap item. Dalam matriks ini, nilai di dalamnya adalah 1 untuk setiap data dengan is_recommended yang bernilai True. Matriks ini akan digunakan sebagai input untuk algoritma Collaborative Filtering.
 
 ## 5. Modeling
 
@@ -400,13 +395,13 @@ Berikut adalah hasil evaluasi untuk pendekatan _Content-Based Filtering_ dan _Co
 
 ### Content-Based Filtering
 
-| title | Jaccard Similarity |
-|:------|:-----|
-|          Rampage Knights | 0.6666666666666666 |
-|         Labyrinth Legend | 0.6666666666666666 |
-|        Children of Morta | 0.5384615384615384 |
-|           Rogues Like Us | 0.42857142857142855 |
-|            Astral Ascent | 0.6 |
+| Nama game         | Jaccard Similarity  |
+|:------------------|:--------------------|
+| Rampage Knights   | 0.6666666666666666  |
+| Labyrinth Legend  | 0.6666666666666666  |
+| Children of Morta | 0.5384615384615384  |
+| Rogues Like Us    | 0.42857142857142855 |
+| Astral Ascent     | 0.6                 |
 
 Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
 
