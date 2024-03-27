@@ -269,7 +269,7 @@ Untuk Collaborative filtering, data preparation yang dulakukan adalah sebagai be
 
 ### Content-Based Filtering
 
-_Content-Based Filtering_ atau CBF adalah pendekatan yang digunakan dalam sistem rekomendasi berdasarkan konten item yang disarankan. Dalam konteks sistem rekomendasi game, pendekatan ini menganalisis fitur pada game, misalnya seperti rating atau genre dari game, untuk memberikan rekomendasi yang relevan pada user.
+_Content-Based Filtering_ adalah pendekatan yang digunakan dalam sistem rekomendasi berdasarkan konten item yang disarankan. Dalam konteks sistem rekomendasi game, pendekatan ini menganalisis fitur pada game, misalnya seperti rating atau genre dari game, untuk memberikan rekomendasi yang relevan pada user. Harapannya, _Content-Based Filtering_ dapat memberikan rekomendasi yang mirip dengan suatu item.
 
 Kelebihan dari _Content-Based Filtering_ adalah:
 
@@ -282,11 +282,15 @@ Sedangkan kekurangan dari _Content-Based Filtering_ adalah:
 - Tidak dapat memberikan rekomendasi yang baik jika deskripsi item tidak akurat atau lengkap 
 - Hasil rekomendasi seringkali kurang bervariasi
 
+Untuk implementasi  _Content-Based Filtering_, akan digunakan model K-Nearest Neighbor (KNN). KNN adalah salah satu algoritma yang sederhana dan umumnya digunakan dalam klasifikasi data. Algoritma ini bekerja dengan mengelompokkan data berdasarkan jarak terdekat dengan tetangga lainnya. Umumnya, KNN digunakan untuk permasalahan supervised learning seperti klasifikasi atau regresi. Namun KNN dapat digunakan untuk unsupervised learning, dengan hanya melakukan pencarian tetangga terdekat dari suatu data yang diinginkan. KNN dipilih karena mudah diimplementasikan dan dipahami, serta tidak ada fase pelatihan, yang dapat mempercepat pembuatan model.
+
 Untuk melakukan pengujian model, digunakan game berikut:
 
 | app_id | title | tags |
 |:-------|:------|:-----|
 | 445980 | Wizard of Legend | Action Roguelike, Pixel Graphics, Roguelike, Action, Dungeon Crawler, Local Co-Op, Magic, Multiplayer, Adventure, Roguelite, Indie, Co-op, Hack and Slash, Local Multiplayer, Difficult, 2D, Singleplayer, RPG, Procedural Generation, Fast-Paced |
+
+_Tabel 5.1: Game yang akan diuji untuk Content-Based Filtering_
 
 Berikut adalah lima game hasil rekomendasi dari game pada tabel:
 
@@ -297,6 +301,8 @@ Berikut adalah lima game hasil rekomendasi dari game pada tabel:
 |  330020 |        Children of Morta | Multiplayer, Roguelike, Hack and Slash, Action Roguelike, Roguelite, Online Co-Op, Pixel Graphics, RPG, Action, Local Co-Op, Dungeon Crawler, Singleplayer, Story Rich, Co-op, Isometric, Action RPG, 2D, Procedural Generation, Fantasy, Action-Adventure |
 |  492410 |           Rogues Like Us | Action Roguelike, Action, Indie, Roguelite, Hack and Slash, Difficult, Roguelike, Dungeon Crawler, Early Access, Local Co-Op |
 | 1280930 |            Astral Ascent | Roguelite, Action Roguelike, Pixel Graphics, Hack and Slash, 2D Platformer, Platformer, Action, Roguelike, Solitaire, 2D, Fantasy, Magic, Co-op, Adventure, Local Co-Op, Singleplayer, Multiplayer, Local Multiplayer, Early Access, Indie |
+
+_Tabel 5.2: Hasil rekomendasi dengan CBF berdasarkan game pada tabel 5.1_
 
 ### Collaborative Filtering
 
@@ -313,6 +319,8 @@ Sedangkan kekurangan dari _Collaborative Filtering_ adalah:
 - Sulit memberikan rekomendasi pada user baru, karena belum memiliki data tentang preferensi mereka (Cold-start problem)
 - Membutuhkan perhitungan yang kompleks, terutama pada dataset yang besar
 
+Untuk implementasi  _Content-Based Filtering_, akan digunakan model K-Means clustering. Algoritma K-Means adalah algoritma yang biasa digunakan untuk kasus clustering. K-Means bekerja dengan memilih beberapa titik data awal (k) secara acak, lalu memindah-mindahkannya hingga pengelompokan yang paling ideal ditemukan. Harapannya, tiap-tiap kelompok atau cluster ini mencerminkan data yang sifatnya mirip. K-Means dipilih karena sifatnya yang sederhana dan mampu digunakan pada dataset yang berjumlah besar.
+
 Untuk melakukan pengujian model, akan digunakan user dengan id 51580. User tersebut merekomendasikan game berikut:
 
 |  app_id |                              title | date_release |                  rating | positive_ratio | user_reviews |
@@ -322,6 +330,8 @@ Untuk melakukan pengujian model, akan digunakan user dengan id 51580. User terse
 |  590380 |                    Into the Breach |   2018-02-27 |           Very Positive |             94 |        14489 |
 |  975370 |                     Dwarf Fortress |   2022-12-06 | Overwhelmingly Positive |             95 |        19665 |
 | 1649080 |                   Two Point Campus |   2022-08-09 |           Very Positive |             88 |         2421 |
+
+_Tabel 5.3: Game yang direkomendasikan oleh user yang akan diuji_
 
 Hasil rekomendasi dari user diatas adalah sebagai berikut:
 
@@ -333,11 +343,7 @@ Hasil rekomendasi dari user diatas adalah sebagai berikut:
 |     440 | Team Fortress 2 |   2007-10-10 |           Very Positive |             93 |       985819 |
 |    2280 |     DOOM (1993) |   2007-08-03 | Overwhelmingly Positive |             96 |        13070 |
 
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
+_Tabel 5.2: Hasil rekomendasi dengan CF berdasarkan tabel 5.3_
 
 ## 5. Evaluation
 
