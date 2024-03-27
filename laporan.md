@@ -4,7 +4,7 @@
 
 ### Latar Belakang
 
-Industri game telah berkembang cukup pesat dalam beberapa tahun terakhir. Hal ini dapat dipengaruhi oleh berbagai hal, seperti akses internet yang semakin mudah, perkembangan teknologi, serta popularitas eSport. Pada tahun 2017, pendapatan dari penjualan game oleh industri game terhitung sebesar $108.9 milyar USD.[^1] Di tahun 2018, terdapat sekitar 2 milyar pemain game aktif di seluruh dunia.[^2] Di Indonesia sendiri, pasar game di Indonesia masih tergolong muda. Meskipun begitu,  Indonesia tercatat telah mencapai jumlah yang sangat tinggi di tahun 2017, yakni $880 juta USD.[^3]
+Industri game telah berkembang cukup pesat dalam beberapa tahun terakhir. Hal ini dapat dipengaruhi oleh berbagai hal, seperti akses internet yang semakin mudah, perkembangan teknologi, serta popularitas eSport. Pada tahun 2017, pendapatan dari penjualan game oleh industri game terhitung sebesar $108.9 milyar USD.[^1] Di tahun 2018, terdapat sekitar 2 milyar pemain game aktif di seluruh dunia.[^2] Di Indonesia sendiri, pasar game di Indonesia masih tergolong muda. Meskipun begitu, pendapatan dari bisnis game di Indonesia tercatat telah mencapai jumlah yang sangat tinggi di tahun 2017, yakni $880 juta USD.[^3]
 
 Perkembangan ini menciptakan peluang baru bagi pengembang dan penerbit game, tetapi juga tantangan dalam menjangkau dan mempertahankan pemain. Selain itu, dengan jumlah game yang tersedia di pasaran saat ini, menemukan game yang tepat untuk dimainkan bisa menjadi tantangan bagi banyak pengguna. Sistem rekomendasi game dapat membantu memecahkan masalah ini dengan memberikan saran yang disesuaikan dengan preferensi setiap pengguna. Hal ini tidak hanya meningkatkan pengalaman bermain game pengguna, tetapi juga membantu pengembang dan penerbit game untuk menargetkan game mereka kepada audiens yang tepat.
 
@@ -220,19 +220,21 @@ Berikut adalah hasil analisis dari data tersebut:
 
 7. Grafik rekomendasi game pada review
 
+    Berikut adalah grafik yang menunjukkan data pada fitur is_recommended
+
     ![](pic/03-08.png)
 
-    *Gambar 3.8: Grafik histogram dari data user*
+    *Gambar 3.8: Grafik histogram dari data pada fitur is_recommended*
 
-    Dari grafik diatas, terlihat bahwa review dengan label "True" (merekomendasikan game) berjumlah sekitar 35 juta, sedangkan review dengan label "False" (tidak merekomendasikan game) berjumlah sekitar 5 juta. Jumlah review dengan label "True" (merekomendasikan game) jauh lebih banyak dibandingkan dengan review dengan label "False" (tidak merekomendasikan game). Hal ini menunjukkan bahwa sebagian besar user cenderung menyukai dan merekomendasikan game yang mereka mainkan, walaupun terdapat beberapa review negatif.
+    Dari grafik diatas, terlihat bahwa review dengan label "True" (merekomendasikan game) berjumlah sekitar 35 juta, sedangkan review dengan label "False" (tidak merekomendasikan game) berjumlah sekitar 5 juta. Jumlah review dengan label "True" jauh lebih banyak dibandingkan dengan review dengan label "False". Hal ini menunjukkan bahwa sebagian besar user cenderung menyukai dan merekomendasikan game yang mereka mainkan, walaupun terdapat beberapa review negatif.
 
 8. Lain-lain
 
     Selain grafik di atas, didapat beberapa fakta lain saat melakukan EDA, yakni sebagai berikut:
     
-    - Dari 50872 game yang ada, terdapat 1244 game yang tidak memiliki tag sama sekali. Game-game yang tidak memiliki tag banyak yang berasal dari game populer, seperti Fallout 4, Half-Life: Alyx, Portal 2, dan Team Fortress 2. Hal ini dapat menjadi tantangan karena sistem mungkin tidak memiliki informasi yang cukup untuk membuat rekomendasi.
+    - Dari 50872 game yang ada, terdapat 1244 game yang tidak memiliki tag sama sekali. Game-game yang tidak memiliki tag banyak yang berasal dari game populer, seperti "Fallout 4", "Half-Life: Alyx", "Portal 2", dan "Team Fortress 2". Hal ini dapat menjadi tantangan karena sistem mungkin tidak memiliki informasi yang cukup untuk membuat rekomendasi.
 
-    - Ada 121 game yang memiliki nama yang sama persis tetapi sebenarnya adalah game yang berbeda. Misalnya, terdapat dua game berbeda dengan nama "Lighthouse Keeper" - yang satu adalah game horror eksperimental dengan grafik pixel, sedangkan game lainnya adalah game survival santai dengan grafik 3D. Hal ini juga bisa menjadi tantangan saat membangun sistem rekomendasi karena bisa membingungkan model. Oleh karenanya, penting untuk memastikan bahwa sistem rekomendasi dapat membedakan game-game ini, misalnya dengan memasukkan fitur tambahan seperti tanggal rilis atau tag ke dalam model, atau dengan menggunakan identifier lain ssat memberikan rekomendasi seperti id game.
+    - Ada 121 game yang memiliki nama yang sama persis tetapi sebenarnya adalah game yang berbeda. Misalnya, terdapat dua game berbeda dengan nama "Lighthouse Keeper" - yang satu adalah game horror eksperimental dengan grafik pixel, sedangkan game lainnya adalah game survival santai dengan grafik 3D. Hal ini juga bisa menjadi tantangan saat membangun sistem rekomendasi karena bisa membingungkan model. Oleh karenanya, penting untuk memastikan bahwa sistem rekomendasi dapat membedakan game-game ini, misalnya dengan memasukkan fitur tambahan seperti tanggal rilis atau tag ke dalam model, atau dengan menggunakan identifier lain saat memberikan rekomendasi seperti id game.
 
 ## 4. Data Preparation
 
@@ -266,7 +268,7 @@ Untuk Collaborative filtering, data preparation yang dulakukan adalah sebagai be
 
 3.  Membuat user-item matrix
 
-    Matriks ini adalah representasi dari interaksi antara user dan game, dimaan tiap baris mewakili user dan tiap kolom mewakili game. Nilai dalam matriks adalah indikasi dari preferensi pengguna terhadap item. Dalam matriks ini, nilai di dalamnya adalah 1 untuk setiap data dengan is_recommended yang bernilai True. Matriks ini akan digunakan sebagai input untuk algoritma Collaborative Filtering.
+    Matriks ini adalah representasi dari interaksi antara user dan game, dimana tiap baris mewakili id user dan tiap kolom mewakili id game. Nilai dalam matriks adalah indikasi dari preferensi pengguna terhadap item. Dalam matriks ini, nilai di dalamnya adalah 1 untuk setiap data dengan is_recommended yang bernilai True. Matriks ini akan digunakan sebagai input untuk algoritma Collaborative Filtering.
 
 ## 5. Modeling
 
@@ -322,7 +324,7 @@ Sedangkan kekurangan dari _Collaborative Filtering_ adalah:
 - Sulit memberikan rekomendasi pada user baru, karena belum memiliki data tentang preferensi mereka (Cold-start problem)
 - Membutuhkan perhitungan yang kompleks, terutama pada dataset yang besar
 
-Untuk implementasi  _Content-Based Filtering_, akan digunakan model K-Means clustering. Algoritma K-Means adalah algoritma yang biasa digunakan untuk kasus clustering. K-Means bekerja dengan memilih beberapa titik data awal (k) secara acak, lalu memindah-mindahkannya hingga pengelompokan yang paling ideal ditemukan. Harapannya, tiap-tiap kelompok atau cluster ini mencerminkan data yang sifatnya mirip. K-Means dipilih karena sifatnya yang sederhana dan mampu digunakan pada dataset yang berjumlah besar.
+Untuk implementasi  _Collaborative Filtering_, akan digunakan model K-Means clustering. Algoritma K-Means adalah algoritma yang biasa digunakan untuk kasus clustering. K-Means bekerja dengan memilih beberapa titik data awal (k) secara acak, lalu memindah-mindahkannya hingga pengelompokan yang paling ideal ditemukan. Harapannya, tiap-tiap kelompok atau cluster ini mencerminkan data yang sifatnya mirip. K-Means dipilih karena sifatnya yang sederhana dan mampu digunakan pada dataset yang berjumlah besar.
 
 Untuk melakukan pengujian model, akan digunakan user dengan id 51580. User tersebut merekomendasikan game berikut:
 
@@ -370,7 +372,7 @@ Metrik evaluasi yang akan digunakan untuk mengukur kinerja model adalah sebagai 
     
     Jaccard score memiliki rentang dari 0 hingga 1. Score mendekati 1 menandakan kedua himpunan tersebut sangat mirip, sedangkan score mendekati 0 menandakan kedua himpunan tersebut sangat berbeda.
 
-    Pada proyek ini, game yang direkomendasikan akan dikatakan relevan jika memiliki Jaccard skor sebesar 0.5 atau lebih dengan game target.
+    Pada proyek ini, game yang direkomendasikan akan dikatakan relevan jika memiliki Jaccard score sebesar 0.5 atau lebih dengan game target.
 
 2. Silhouette score
 
@@ -427,6 +429,10 @@ Mengingat jumlah data yang cukup besar, perhitungan Silhouette score dilakukan p
 ```
 
 Hasil silhouette score menunjukkan bahwa model dapat mengelompokkan data dengan cukup baik, dengan nilai silhouette score sekitar 0.22. Dalam konteks sistem rekomendasi ini, user dapat menemukan game yang mereka sukai dalam cluster yang sama. Namun, nilai ini masih jauh dari 1, yang dapat menunjukkan beberapa sampel tidak cocok dengan baik dengan kluster mereka, atau mungkin ada terlalu banyak atau terlalu sedikit kluster.
+
+## 7. Kesimpulan
+
+Dari hasil evaluasi di atas, kedua model telah menunjukkan kinerja yang cukup baik dalam memberikan rekomendasi game yang relevan dan akurat. Namun, selalu ada ruang untuk peningkatan dan optimasi lebih lanjut. Proyek ini menunjukkan bahwa sistem rekomendasi game dapat dibangun dengan menggunakan dua pendekatan, yakni Content-Based Filtering dan Collaborative Filtering. Kedua pendekatan ini dapat membantu pengguna menemukan game yang mereka sukai dengan lebih mudah, serta membantu pengembang game untuk mencapai pemain baru.
 
 ## Referensi:
 
