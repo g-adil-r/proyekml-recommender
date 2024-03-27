@@ -287,7 +287,7 @@ Sedangkan kekurangan dari _Content-Based Filtering_ adalah:
 
 Untuk implementasi  _Content-Based Filtering_, akan digunakan model K-Nearest Neighbor (KNN). KNN adalah salah satu algoritma yang sederhana dan umumnya digunakan dalam klasifikasi data. Algoritma ini bekerja dengan mengelompokkan data berdasarkan jarak terdekat dengan tetangga lainnya. Umumnya, KNN digunakan untuk permasalahan supervised learning seperti klasifikasi atau regresi. Namun KNN dapat digunakan untuk unsupervised learning, dengan hanya melakukan pencarian tetangga terdekat dari suatu data yang diinginkan. KNN dipilih karena mudah diimplementasikan dan dipahami, serta tidak ada fase pelatihan, yang dapat mempercepat pembuatan model.
 
-Untuk melakukan pengujian model, digunakan game berikut:
+Untuk melakukan pengujian model, digunakan game dengan id 445980 dengan data sebagai berikut:
 
 | app_id | title | tags |
 |:-------|:------|:-----|
