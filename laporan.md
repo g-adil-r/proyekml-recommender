@@ -13,11 +13,13 @@ Tujuan proyek ini adalah untuk mengembangkan sistem rekomendasi game yang menggu
 ## 2. Business Understanding
 
 ### Problem Statements
+
 Berdasarkan latar belakang di atas, perlu dikembangkan sebuah sistem rekomendasi game untuk menjawab permasalahan berikut:
 - Berdasarkan data mengenai game, bagaimana perusahaan dapat merekomendasikan game serupa dengan teknik content-based filtering?
 - Berdasarkan data review game, bagaimana perusahaan dapat merekomendasikan game yang mungkin disukai dan belum pernah dimainkan oleh pengguna?
 
 ### Goals
+
 Untuk menjawab pertanyaan tersebut, sistem rekomendasi dibuat dengan tujuan atau *goals* sebagai berikut:
 - Menghasilkan sejumlah rekomendasi game dengan teknik content-based filtering
 - Menghasilkan sejumlah rekomendasi game yang sesuai dengan preferensi pengguna dan belum pernah dimainkan sebelumnya.
@@ -27,6 +29,7 @@ Keberhasilan proyek ML untuk rekomendasi game akan memberikan manfaat signifikan
 - Memudahkan menemukan game yang tepat untuk dimainkan bagi pengguna
 
 ### Solution statements
+
 Untuk mencapai tujuan tersebut, solusi yang perlu dilakukan adalah sebagai berikut:
 - Mengembangkan sistem rekomendasi game dengan pendekatan Content-Based Filtering (CBF)
 - Mengembangkan sistem rekomendasi game dengan pendekatan Collaborative Filtering (CF)
@@ -335,17 +338,17 @@ _Tabel 5.3: Game yang direkomendasikan oleh user yang akan diuji_
 
 Hasil rekomendasi dari user diatas adalah sebagai berikut:
 
-|  app_id |           title | date_release |                  rating | positive_ratio | user_reviews |
-|--------:|:----------------|:-------------|:-----------------------:|:--------------:|:------------:|
-|  546560 | Half-Life: Alyx |   2020-03-23 | Overwhelmingly Positive |             98 |        71472 |
-| 1237970 |    Titanfall® 2 |   2020-06-18 |           Very Positive |             94 |       154419 |
-|  611500 | Quake Champions |   2022-08-18 |         Mostly Positive |             73 |        36191 |
-|     440 | Team Fortress 2 |   2007-10-10 |           Very Positive |             93 |       985819 |
-|    2280 |     DOOM (1993) |   2007-08-03 | Overwhelmingly Positive |             96 |        13070 |
+| app_id | title | date_release | rating | positive_ratio | user_reviews |
+|-------:|:------|:-------------|:------:|:--------------:|:------------:|
+|  546560 | Half-Life: Alyx |   2020-03-23 | Overwhelmingly Positive | 98 |        71472 |
+| 1237970 |    Titanfall® 2 |   2020-06-18 |           Very Positive | 94 |       154419 |
+|  611500 | Quake Champions |   2022-08-18 |         Mostly Positive | 73 |        36191 |
+|     440 | Team Fortress 2 |   2007-10-10 |           Very Positive | 93 |       985819 |
+|    2280 |     DOOM (1993) |   2007-08-03 | Overwhelmingly Positive | 96 |        13070 |
 
-_Tabel 5.2: Hasil rekomendasi dengan CF berdasarkan tabel 5.3_
+_Tabel 5.4: Hasil rekomendasi dengan CF berdasarkan tabel 5.3_
 
-## 5. Evaluation
+## 6. Evaluation
 
 Metrik evaluasi yang akan digunakan untuk mengukur kinerja model adalah sebagai berikut:
 
@@ -401,20 +404,29 @@ Berikut adalah hasil evaluasi untuk pendekatan _Content-Based Filtering_ dan _Co
 
 ### Content-Based Filtering
 
-| Nama game         | Jaccard Similarity  |
-|:------------------|:--------------------|
-| Rampage Knights   | 0.6666666666666666  |
-| Labyrinth Legend  | 0.6666666666666666  |
-| Children of Morta | 0.5384615384615384  |
-| Rogues Like Us    | 0.42857142857142855 |
-| Astral Ascent     | 0.6                 |
+Tabel berikut menunjukkan Jaccard score dari game yang direkomendasikan dengan game target pada tabel 5.1.
 
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
+| Game yang direkomendasikan | Jaccard score       |
+|:---------------------------|:--------------------|
+| Rampage Knights            | 0.6666666666666666  |
+| Labyrinth Legend           | 0.6666666666666666  |
+| Children of Morta          | 0.5384615384615384  |
+| Rogues Like Us             | 0.42857142857142855 |
+| Astral Ascent              | 0.6                 |
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+_Tabel 6.1: Jaccard score dari game hasil rekomendasi_
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Terlihat bahwa 4 dari 5 game yang direkomendasikan memiliki nilai jaccard score diatas 0.5. Sehingga precision@k untuk sistem rekomendasi ini adalah 4/5 atau 0,8. Hal ini menandakan bahwa dari 5 game yang direkomendasikan,  4 di antaranya adalah rekomendasi yang baik dan sesuai dengan preferensi pengguna. Nilai ini cukup tinggi, menunjukkan bahwa model dapat memberikan rekomendasi yang relevan.
+
+### Collaborative Filtering
+
+Mengingat jumlah data yang cukup besar, perhitungan Silhouette score dilakukan pada 100.000 data sampel acak. Didapat hasil perhitungan Silhouette scorenya sebagai berikut:
+
+```
+0.21968125181380824
+```
+
+Hasil silhouette score menunjukkan bahwa model dapat mengelompokkan data dengan cukup baik, dengan nilai silhouette score sekitar 0.22. Dalam konteks sistem rekomendasi ini, user dapat menemukan game yang mereka sukai dalam cluster yang sama. Namun, nilai ini masih jauh dari 1, yang dapat menunjukkan beberapa sampel tidak cocok dengan baik dengan kluster mereka, atau mungkin ada terlalu banyak atau terlalu sedikit kluster.
 
 ## Referensi:
 
